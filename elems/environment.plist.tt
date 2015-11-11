@@ -50,7 +50,7 @@
     launchctl setenv EDITOR "<%= get_var! 'editor' %>"
     <% end %>
     <% if has_feature? 'go' %>
-    launchctl setenv GOPATH "<%= File.expand_path get_var! 'go.basedir' %>"
+    launchctl setenv GOPATH "<%= File.expand_path get_var! 'go.base_dir' %>"
     launchctl setenv PATH "${GOPATH//://bin:}/bin:/usr/local/opt/go/libexec/bin:${PATH}"
     <% end %>
     <% if has_feature? 'groovy' %>
