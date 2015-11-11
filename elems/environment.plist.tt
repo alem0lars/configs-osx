@@ -40,7 +40,7 @@
   <string>my.startup</string>
   <key>ProgramArguments</key>
   <array>
-    <string>sh</string>
+    <string>/bin/sh</string>
     <string>-c</string>
     <string>
     launchctl setenv LIBRARY_PATH /usr/local/lib
