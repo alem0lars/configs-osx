@@ -37,7 +37,7 @@
 <plist version="1.0">
 <dict>
   <key>Label</key>
-  <string>my.startup</string>
+  <string>Set system-wide environment variables</string>
   <key>ProgramArguments</key>
   <array>
     <string>/bin/sh</string>
