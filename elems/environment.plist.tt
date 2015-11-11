@@ -1,0 +1,66 @@
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+#                                                                              ┃
+# File informations:                                                           ┃
+# - Name:    elems/environment.plist.tt                                        ┃
+# - Summary: The OSX system-wide environment variables definition.             ┃
+# - Authors:                                                                   ┃
+#   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              ┃
+#                                                                              ┃
+# Project informations:                                                        ┃
+#   - Homepage:        https://github.com/alem0lars/configs-osx                ┃
+#   - Getting started: see README.md in the project root folder                ┃
+#                                                                              ┃
+# License: Apache v2.0 (see below)                                             ┃
+#                                                                              ┃
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+#                                                                              ┃
+# Licensed to the Apache Software Foundation (ASF) under one more contributor  ┃
+# license agreements.  See the NOTICE file distributed with this work for      ┃
+# additional information regarding copyright ownership. The ASF licenses this  ┃
+# file to you under the Apache License, Version 2.0 (the "License"); you may   ┃
+# not use this file except in compliance with the License.                     ┃
+# You may obtain a copy of the License at                                      ┃
+#                                                                              ┃
+#   http://www.apache.org/licenses/LICENSE-2.0                                 ┃
+#                                                                              ┃
+# Unless required by applicable law or agreed to in writing, software          ┃
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT    ┃
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.             ┃
+# See the License for the specific language governing permissions and          ┃
+# limitations under the License.                                               ┃
+#                                                                              ┃
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>my.startup</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>sh</string>
+    <string>-c</string>
+    <string>
+    <% if has_feature? 'homebrew' %>
+    launchctl setenv HOMEBREW_CASK_OPTS "--appdir=/Applications"
+    <% end %>
+    <% if get_var 'editor' %>
+    launchctl setenv EDITOR "<%= get_var! 'editor' %>"
+    <% end %>
+    <% if has_feature? 'go' %>
+    launchctl setenv GOPATH "<%= File.expand_path get_var! 'go.basedir' %>"
+    launchctl setenv PATH "${GOPATH//://bin:}/bin:${PATH}"
+    <% end %>
+    <% if has_feature? 'groovy' %>
+    launchctl setenv GROOVY_HOME "/usr/local/opt/groovy/libexec"
+    <% end %>
+    <% if has_feature? 'java' %>
+    launchctl setenv JAVA_HOME /Library/Java/Home
+    <% end %>
+    </string>
+  </array>
+  <key>RunAtLoad</key>
+  <true/>
+</dict>
+</plist>
