@@ -43,9 +43,11 @@
     <string>/bin/sh</string>
     <string>-c</string>
     <string>
-    launchctl setenv PATH "/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
     launchctl setenv MANPATH "/usr/local/share/man:/usr/share/man"
     launchctl setenv LIBRARY_PATH "/usr/local/lib"
+    launchctl setenv PATH "<%= data_for_features({
+      go: -> { "#{File.expand_path get_var 'go.base_dir'}/bin:/usr/local/opt/go/libexec/bin" }
+    }).join(':'):/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin %>"
     <% if has_feature? 'homebrew' %>
     launchctl setenv HOMEBREW_CASK_OPTS "--appdir=/Applications"
     <% end %>
@@ -54,7 +56,6 @@
     <% end %>
     <% if has_feature? 'go' %>
     launchctl setenv GOPATH "<%= File.expand_path get_var! 'go.base_dir' %>"
-    launchctl setenv PATH "${GOPATH//://bin:}/bin:/usr/local/opt/go/libexec/bin:${PATH}"
     <% end %>
     <% if has_feature? 'groovy' %>
     launchctl setenv GROOVY_HOME "/usr/local/opt/groovy/libexec"
