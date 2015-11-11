@@ -43,7 +43,8 @@
     <string>/bin/sh</string>
     <string>-c</string>
     <string>
-    launchctl setenv LIBRARY_PATH /usr/local/lib
+    launchctl setenv MANPATH "/usr/local/share/man:/usr/share/man"
+    launchctl setenv LIBRARY_PATH "/usr/local/lib"
     <% if has_feature? 'homebrew' %>
     launchctl setenv HOMEBREW_CASK_OPTS "--appdir=/Applications"
     <% end %>
