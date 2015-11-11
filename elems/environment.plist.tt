@@ -76,6 +76,7 @@
     <% end %>
     <% if has_feature? 'sbt' %>
     launchctl setenv SBT_OPTS "-XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=<%= Integer get_var! 'sbt.max_perm_size' %>"
+    <% end %>
   </array>
   <key>RunAtLoad</key>
   <true/>
