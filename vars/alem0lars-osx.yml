@@ -1,9 +1,18 @@
 editor: atom -w
+
 go:
   base_dir: ~/Development/Workspaces/Go
-  
+
+sbt:
+  max_perm_size: 256
+
 features:
   - homebrew
   - go
   - groovy
   - java
+  - erlang
+  - mono
+  - python
+  - rust
+  - sbt
