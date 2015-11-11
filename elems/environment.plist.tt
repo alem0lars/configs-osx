@@ -43,6 +43,7 @@
     <string>/bin/sh</string>
     <string>-c</string>
     <string>
+    launchctl setenv PATH "/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
     launchctl setenv MANPATH "/usr/local/share/man:/usr/share/man"
     launchctl setenv LIBRARY_PATH "/usr/local/lib"
     <% if has_feature? 'homebrew' %>
