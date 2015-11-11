@@ -47,7 +47,7 @@
     launchctl setenv LIBRARY_PATH "/usr/local/lib"
     launchctl setenv PATH "<%= data_for_features({
       go: -> { "#{File.expand_path get_var 'go.base_dir'}/bin:/usr/local/opt/go/libexec/bin" }
-    }).join(':'):/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin %>"
+    }).join(':') %>:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
     <% if has_feature? 'homebrew' %>
     launchctl setenv HOMEBREW_CASK_OPTS "--appdir=/Applications"
     <% end %>
