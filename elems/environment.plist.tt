@@ -51,15 +51,31 @@
     <% end %>
     <% if has_feature? 'go' %>
     launchctl setenv GOPATH "<%= File.expand_path get_var! 'go.basedir' %>"
-    launchctl setenv PATH "${GOPATH//://bin:}/bin:${PATH}"
+    launchctl setenv PATH "${GOPATH//://bin:}/bin:/usr/local/opt/go/libexec/bin:${PATH}"
     <% end %>
     <% if has_feature? 'groovy' %>
     launchctl setenv GROOVY_HOME "/usr/local/opt/groovy/libexec"
     <% end %>
     <% if has_feature? 'java' %>
-    launchctl setenv JAVA_HOME /Library/Java/Home
+    launchctl setenv JAVA_HOME "/Library/Java/Home"
     <% end %>
-    </string>
+    <% if has_feature? 'erlang' %>
+    launchctl setenv MANPATH "/usr/local/opt/erlang/lib/erlang/man:${MANPATH}"
+    <% end %>
+    <% if has_feature? 'mono' %>
+    launchctl setenv MONO_GAC_PREFIX "/usr/local"
+    <% end %>
+    <% if has_feature? 'python' %>
+    launchctl setenv PYTHONIOENCODING utf-8
+    <% end %>
+    <% if has_feature? 'ruby' %>
+    launchctl setenv RUBY_CONFIGURE_OPTS "--with-openssl-dir=<%= `brew --prefix openssl`.chomp %> --with-readline-dir=<%= `brew --prefix readline`.chomp %> --with-libyaml-dir=<%= `brew --prefix libyaml`.chomp %>"
+    <% end %>
+    <% if has_feature? 'rust' %>
+    launchctl setenv RUST_SRC_PATH "/usr/local/opt/rust/src"
+    <% end %>
+    <% if has_feature? 'sbt' %>
+    launchctl setenv SBT_OPTS "-XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=<%= Integer get_var! 'sbt.max_perm_size' %>"
   </array>
   <key>RunAtLoad</key>
   <true/>
