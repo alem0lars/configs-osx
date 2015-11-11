@@ -1,2 +1,2 @@
-# configs-osx-envvars
-Environment variables configuration is OSX systems
+# configs-osx
+OSX system-wide configuration
