@@ -1,0 +1,9 @@
+editor: atom -w
+go:
+  base_dir: ~/Development/Workspaces/Go
+  
+features:
+  - homebrew
+  - go
+  - groovy
+  - java
