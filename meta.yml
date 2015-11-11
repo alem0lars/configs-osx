@@ -1,0 +1,6 @@
+elems:
+  - src: elems/(environment.plist)$
+    dst: /Library/LaunchAgents/<1>
+    only:
+      features:
+        - osx
