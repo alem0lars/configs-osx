@@ -43,6 +43,8 @@
     <string>/bin/sh</string>
     <string>-c</string>
     <string>
+    launchctl setenv LC_ALL "en_US.UTF-8"
+    launchctl setenv LANG "en_US.UTF-8"
     launchctl setenv MANPATH "/usr/local/share/man:/usr/share/man"
     launchctl setenv LIBRARY_PATH "/usr/local/lib"
     launchctl setenv PATH "<%= data_for_features({
